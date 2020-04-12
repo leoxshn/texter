@@ -8,19 +8,15 @@ import kotlinx.cinterop.toKString
 actual class Tabs actual constructor(init: Tabs.() -> Unit) : View {
 
     override val gtkWidget: CPointer<GtkWidget> = gtk_notebook_new()!!
-
-    init { init() }
-
-    //val pages = ArrayList<Page>()
-
+    val pages = ArrayList<Page>()
 
     actual class Page actual constructor(val tabs: Tabs, name: String): Container() {
 
         override var container: CPointer<GtkContainer> = tabs.gtkWidget.reinterpret()
 
-        actual var name: String = "helou"
-            //get() = gtk_notebook_get_tab_label_text(tabs.gtkWidget.reinterpret(), container.reinterpret())!!.toKString()
-            //set(value) = gtk_notebook_set_tab_label_text(tabs.gtkWidget.reinterpret(), container.reinterpret(), value)
+        actual var name: String
+            get() = gtk_notebook_get_tab_label_text(tabs.gtkWidget.reinterpret(), container.reinterpret())!!.toKString()
+            set(value) = gtk_notebook_set_tab_label_text(tabs.gtkWidget.reinterpret(), container.reinterpret(), value)
 
         override fun add(view: View) {
             container = view.gtkWidget.reinterpret()
@@ -29,6 +25,8 @@ actual class Tabs actual constructor(init: Tabs.() -> Unit) : View {
     }
 
     actual inline fun add(page: Page) {
-        //pages.add(page)
+        pages.add(page)
     }
+
+    init { init() }
 }

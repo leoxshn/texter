@@ -2,6 +2,8 @@ package posidon.mangoTK.ui
 
 import gtk3.*
 import kotlinx.cinterop.*
+import posidon.mangoTK.util.toBool
+import posidon.mangoTK.util.toInt
 
 actual class TextView actual constructor(init: TextView.() -> Unit) : View {
 
@@ -24,6 +26,6 @@ actual class TextView actual constructor(init: TextView.() -> Unit) : View {
     init { init() }
 
     actual var monospace: Boolean
-        get() = gtk_text_view_get_monospace(gtkWidget.reinterpret()) == 1
-        set(value) = gtk_text_view_set_monospace(gtkWidget.reinterpret(), if (value) 1 else 0)
+        get() = gtk_text_view_get_monospace(gtkWidget.reinterpret()).toBool()
+        set(value) = gtk_text_view_set_monospace(gtkWidget.reinterpret(), value.toInt())
 }

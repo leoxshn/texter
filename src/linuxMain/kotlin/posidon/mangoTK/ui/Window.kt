@@ -25,6 +25,9 @@ actual class Window actual constructor(val init: Window.() -> Unit) : Container(
             field = value
             gtk_window_set_title(gtkWindow, value)
         }
+
+    actual inline fun ifLinuxSetHeaderBar(headerBar: GtkHeaderBar) = gtk_window_set_titlebar(gtkWindow, headerBar.actualHeaderBar)
+    actual inline fun ifLinuxSetHeaderBar(noinline init: GtkHeaderBar.() -> Unit) = ifLinuxSetHeaderBar(GtkHeaderBar(init))
 }
 
 private fun activate(app: CPointer<GtkApplication>, windowPointer: gpointer) =

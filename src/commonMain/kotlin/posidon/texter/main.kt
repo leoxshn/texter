@@ -4,14 +4,15 @@ import posidon.mangoTK.ui.*
 
 fun main(args: Array<String>) { try {
     Window {
-        title = "texter"
+        ifLinuxSetHeaderBar {
+            title = "texter"
+            subtitle = "test subtitle"
+            showCloseBtn = true
+        }
         tabs {
-            println("eee")
-            val txt = page("tyfogdf").textView {
-                println("1111111")
+            val txt = page("file1").textView {
                 text = "bananas are blue, not yellow!"
             }
-            println("222")
             page("aaamgaad").button {
                 text = "Click me"
                 onClick {
@@ -19,7 +20,6 @@ fun main(args: Array<String>) { try {
                     println(txt.text)
                 }
             }
-            println("333")
         }
     }
 } catch (e: Throwable) { println(e.toString()) }}
