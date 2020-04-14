@@ -5,9 +5,9 @@
       <configuration version="3" platform="Native " allPlatforms="Native []" useProjectSettings="false" isTestModule="true" externalProjectId="texter2">
         <dependsOnModuleNames>texter2:commonTest</dependsOnModuleNames>
         <sourceSets>
-          <sourceSet>posidon.texter.texter2.linuxMain</sourceSet>
-          <sourceSet>posidon.texter.texter2.commonMain</sourceSet>
           <sourceSet>posidon.texter.texter2.commonTest</sourceSet>
+          <sourceSet>posidon.texter.texter2.commonMain</sourceSet>
+          <sourceSet>posidon.texter.texter2.linuxMain</sourceSet>
         </sourceSets>
         <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
         <externalSystemTestTasks>linuxTest|texter2:linuxTest|linux</externalSystemTestTasks>

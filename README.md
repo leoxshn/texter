@@ -1,4 +1,5 @@
 # Texter
+![kotlin_percentage](https://img.shields.io/badge/kotlin-100%25-6779F6)
 
 The [old texter](https://github.com/leoxshn/texter_old) was built on very old java frameworks (awt & swing), they were slow, buggy, hard to work with... This one's gonna be very similar to old texter, but it will use Gtk of Linux (other platforms not yet supported), so it will be less themable, but it will look more like other apps on your OS.
 

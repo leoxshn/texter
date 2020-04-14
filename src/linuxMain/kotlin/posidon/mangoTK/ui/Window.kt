@@ -2,6 +2,7 @@ package posidon.mangoTK.ui
 
 import gtk3.*
 import kotlinx.cinterop.*
+import posidon.mangoTK.util.Bitmap
 import posidon.texter.AppInfo
 
 actual class Window actual constructor(val init: Window.() -> Unit) : Container() {
@@ -26,8 +27,12 @@ actual class Window actual constructor(val init: Window.() -> Unit) : Container(
             gtk_window_set_title(gtkWindow, value)
         }
 
-    actual inline fun ifLinuxSetHeaderBar(headerBar: GtkHeaderBar) = gtk_window_set_titlebar(gtkWindow, headerBar.actualHeaderBar)
-    actual inline fun ifLinuxSetHeaderBar(noinline init: GtkHeaderBar.() -> Unit) = ifLinuxSetHeaderBar(GtkHeaderBar(init))
+    actual inline fun ifLinuxHeaderBar(headerBar: GtkHeaderBar) = gtk_window_set_titlebar(gtkWindow, headerBar.actualHeaderBar)
+    actual inline fun ifLinuxHeaderBar(noinline init: GtkHeaderBar.() -> Unit) = ifLinuxHeaderBar(GtkHeaderBar(init))
+
+    actual var icon: Bitmap
+        get() = Bitmap(gtk_window_get_icon(gtkWindow)!!)
+        set(value) = gtk_window_set_icon(gtkWindow, value.pixbuf)
 }
 
 private fun activate(app: CPointer<GtkApplication>, windowPointer: gpointer) =

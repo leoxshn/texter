@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+    <gresource>
+        <file compressed="true">icons/appIcon/48.png</file>
+        <file compressed="true">icons/appIcon/48.svg</file>
+        <file compressed="true">icons/appIcon/32.png</file>
+        <file compressed="true">icons/appIcon/32.svg</file>
+        <file compressed="true">icons/appIcon/64.png</file>
+        <file compressed="true">icons/appIcon/64.svg</file>
+    </gresource>
+</gresources>
