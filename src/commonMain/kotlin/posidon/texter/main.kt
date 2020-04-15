@@ -1,5 +1,6 @@
 package posidon.texter
 
+import posidon.mangoTK.io.FileChooserDialog
 import posidon.mangoTK.ui.*
 import posidon.mangoTK.util.Icon
 import posidon.mangoTK.util.IconSize
@@ -16,9 +17,11 @@ fun main(args: Array<String>) { try {
             start {
                 button(Icon.FILE.get(IconSize.VerySmall)) {
                     onClick {
-                        tabs.page("new").text {
-                            text = "bdghdfghdfghfdghdfghghawgdfhsdñ glhñgd ghkfdgljhl"
-                            println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                        FileChooserDialog.chooseFile(window = this@Window)?.let {
+                            tabs.page("another file").text {
+                                monospace = true
+                                it.forEachLine { text += it + '\n' }
+                            }
                         }
                     }
                 }
@@ -26,8 +29,10 @@ fun main(args: Array<String>) { try {
         }
         linearLayout(Orientation.HORIZONTAL) {
             tree {
-                node("blablabla") {
+                node("blablAbla") {
+                    node("blablAbla junior") {
 
+                    }
                 }
             }
             tabs = tabs {

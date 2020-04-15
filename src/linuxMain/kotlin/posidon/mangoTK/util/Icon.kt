@@ -9,14 +9,14 @@ actual enum class Icon(val iconName: String) {
 
     actual fun get(size: IconSize): Bitmap {
         val err = nativeHeap.alloc<CPointerVar<GError>>().ptr
-        val blabla = nativeHeap.allocArrayOf(iconName.cstr.getPointer(object : AutofreeScope() {
+        val strPointer = nativeHeap.allocArrayOf(iconName.cstr.getPointer(object : AutofreeScope() {
             override fun alloc(size: Long, align: Int) = nativeHeap.alloc(size, align)
         }))
-        val d = gtk_icon_theme_choose_icon(gtk_icon_theme_get_default(), blabla, size.resolution, 0u)
-        val a = gtk_icon_info_load_icon(d, err)
-        nativeHeap.free(blabla.rawValue)
+        val icon = gtk_icon_theme_choose_icon(gtk_icon_theme_get_default(), strPointer, size.resolution, 0u)
+        val pixbuf = gtk_icon_info_load_icon(icon, err)
+        nativeHeap.free(strPointer.rawValue)
         val error = err.pointed.value?.pointed
         if (error != null) throw Exception(error.message?.toKString())
-        return Bitmap(a)
+        return Bitmap(pixbuf)
     }
 }
