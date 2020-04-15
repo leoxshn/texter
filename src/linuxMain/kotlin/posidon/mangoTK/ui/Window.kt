@@ -27,7 +27,10 @@ actual class Window actual constructor(val init: Window.() -> Unit) : Container(
             gtk_window_set_title(gtkWindow, value)
         }
 
-    actual inline fun ifLinuxHeaderBar(headerBar: GtkHeaderBar) = gtk_window_set_titlebar(gtkWindow, headerBar.actualHeaderBar)
+    actual inline fun ifLinuxHeaderBar(headerBar: GtkHeaderBar) {
+        gtk_window_set_titlebar(gtkWindow, headerBar.actualHeaderBar)
+        gtk_widget_show(headerBar.actualHeaderBar)
+    }
     actual inline fun ifLinuxHeaderBar(noinline init: GtkHeaderBar.() -> Unit) = ifLinuxHeaderBar(GtkHeaderBar(init))
 
     actual var icon: Bitmap
@@ -43,5 +46,5 @@ private fun activate(app: CPointer<GtkApplication>, windowPointer: gpointer) =
 
         gtk_window_set_default_size(gtkWindow, 200, 200)
 
-        gtk_widget_show_all(windowWidget)
+        gtk_widget_show(windowWidget)
     }

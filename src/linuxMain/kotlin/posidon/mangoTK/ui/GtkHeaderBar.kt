@@ -36,12 +36,16 @@ actual class GtkHeaderBar actual constructor(init: GtkHeaderBar.() -> Unit) {
     }
 
     actual class StartSide actual constructor(headerBar: GtkHeaderBar, init: Side.() -> Unit): Side(headerBar, init) {
-        override fun add(view: View) =
+        override fun add(view: View) {
             gtk_header_bar_pack_start(headerBar.actualHeaderBar.reinterpret(), view.gtkWidget)
+            gtk_widget_show_all(headerBar.actualHeaderBar)
+        }
     }
 
     actual class EndSide actual constructor(headerBar: GtkHeaderBar, init: Side.() -> Unit): Side(headerBar, init) {
-        override fun add(view: View) =
+        override fun add(view: View) {
             gtk_header_bar_pack_end(headerBar.actualHeaderBar.reinterpret(), view.gtkWidget)
+            gtk_widget_show_all(headerBar.actualHeaderBar)
+        }
     }
 }

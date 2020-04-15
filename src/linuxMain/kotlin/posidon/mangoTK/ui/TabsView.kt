@@ -23,11 +23,13 @@ actual class TabsView actual constructor(init: TabsView.() -> Unit) : View {
         override fun add(view: View) {
             container = view.gtkWidget.reinterpret()
             gtk_notebook_append_page(tabsView.gtkWidget.reinterpret(), view.gtkWidget, gtk_label_new(tmpName))
+            gtk_widget_show(view.gtkWidget)
         }
     }
 
     actual inline fun add(page: Page) {
         pages.add(page)
+        gtk_widget_show_all(gtkWidget)
     }
 
     init { init() }
