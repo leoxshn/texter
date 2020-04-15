@@ -20,7 +20,6 @@ actual class TreeView actual constructor(init: TreeView.() -> Unit): View {
     }
 
     actual fun addNode(node: Node) {
-
     }
 
     actual class Node actual constructor(init: Node.() -> Unit) {

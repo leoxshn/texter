@@ -1,8 +1,8 @@
 package posidon.texter
 
 import posidon.mangoTK.ui.*
-import posidon.mangoTK.util.Bitmap
 import posidon.mangoTK.util.Icon
+import posidon.mangoTK.util.IconSize
 
 fun main(args: Array<String>) { try {
     Window {
@@ -10,6 +10,12 @@ fun main(args: Array<String>) { try {
             title = "texter"
             hasSubtitle = false
             showCloseBtn = true
+
+            start {
+                button(Icon.FILE.get(IconSize.VerySmall)) {
+
+                }
+            }
         }
         linearLayout(Orientation.HORIZONTAL) {
             var txt: TextView? = null
@@ -18,16 +24,18 @@ fun main(args: Array<String>) { try {
 
                 }
             }
-            image(Icon.FILE.get())
-            button {
-                text = "Click me"
+            image(Icon.FILE.get(IconSize.VerySmall))
+            button(Icon.FILE.get(IconSize.VerySmall)) {
+                //text = "Click me"
+                println("aaaaaaaaaaaaaaaaaaaaaaaaaa")
                 onClick {
-                    text = "Dude OMFG! I WAS CLICKED!!"
+                    //text = "Dude OMFG! I WAS CLICKED!!"
                     println(txt!!.text)
-                    //icon = Bitmap.fromFile("/home/leo/Desktop/textericon.png")!!
-                    icon = Icon.FOLDER.get()
+                    icon = Icon.FOLDER.get(IconSize.VerySmall)
                 }
+                println("bbbbbbbbbb")
             }
+            println("cccccccccccccc")
             tabs {
                 txt = page("file1").text {
                     text = "bananas are blue, not yellow!"

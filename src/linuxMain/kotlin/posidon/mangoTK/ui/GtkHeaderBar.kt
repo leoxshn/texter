@@ -1,6 +1,8 @@
 package posidon.mangoTK.ui
 
 import gtk3.*
+import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.nativeNullPtr
 import kotlinx.cinterop.reinterpret
 import kotlinx.cinterop.toKString
 import posidon.mangoTK.util.toBool
@@ -27,4 +29,19 @@ actual class GtkHeaderBar actual constructor(init: GtkHeaderBar.() -> Unit) {
         set(value) = gtk_header_bar_set_show_close_button(actualHeaderBar.reinterpret(), value.toInt())
 
     init { init() }
+
+    actual abstract class Side actual constructor(val headerBar: GtkHeaderBar, init: Side.() -> Unit): Container() {
+        override val container: CPointer<GtkContainer> = headerBar.actualHeaderBar.reinterpret()
+        init { init() }
+    }
+
+    actual class StartSide actual constructor(headerBar: GtkHeaderBar, init: Side.() -> Unit): Side(headerBar, init) {
+        override fun add(view: View) =
+            gtk_header_bar_pack_start(headerBar.actualHeaderBar.reinterpret(), view.gtkWidget)
+    }
+
+    actual class EndSide actual constructor(headerBar: GtkHeaderBar, init: Side.() -> Unit): Side(headerBar, init) {
+        override fun add(view: View) =
+            gtk_header_bar_pack_end(headerBar.actualHeaderBar.reinterpret(), view.gtkWidget)
+    }
 }

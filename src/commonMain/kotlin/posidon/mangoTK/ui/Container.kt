@@ -16,6 +16,8 @@ expect abstract class Container {
 inline fun Container.button(noinline init: Button.() -> Unit) = Button(init).also { add(it) }
 inline fun Container.button(text: String, noinline init: Button.() -> Unit) = Button(init).also { add(it); it.text = text }
 
+inline fun Container.button(bitmap: Bitmap, noinline init: ImageButton.() -> Unit) = ImageButton(init).also { add(it); it.bitmap = bitmap }
+
 inline fun Container.text(noinline init: TextView.() -> Unit) = TextView(init).also { add(it) }
 inline fun Container.text(text: String, noinline init: TextView.() -> Unit) = TextView(init).also { add(it); it.text = text }
 inline fun Container.text(text: String) = TextView { this.text = text }.also { add(it) }
