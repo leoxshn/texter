@@ -8,9 +8,9 @@ import kotlinx.cinterop.toKString
 actual class TabsView actual constructor(init: TabsView.() -> Unit) : View {
 
     override val gtkWidget: CPointer<GtkWidget> = gtk_notebook_new()!!
-    val pages = ArrayList<Page>()
+    val pages = ArrayList<Tab>()
 
-    actual class Page actual constructor(val tabsView: TabsView, name: String): Container() {
+    actual class Tab actual constructor(val tabsView: TabsView, name: String): Container() {
 
         override var container: CPointer<GtkContainer> = tabsView.gtkWidget.reinterpret()
 
@@ -27,8 +27,8 @@ actual class TabsView actual constructor(init: TabsView.() -> Unit) : View {
         }
     }
 
-    actual inline fun add(page: Page) {
-        pages.add(page)
+    actual inline fun add(tab: Tab) {
+        pages.add(tab)
         gtk_widget_show_all(gtkWidget)
     }
 

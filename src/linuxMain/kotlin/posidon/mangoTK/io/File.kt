@@ -9,7 +9,6 @@ actual inline class File actual constructor(val path: String) {
     actual fun readText(): String {
         val err = nativeHeap.alloc<CPointerVar<GError>>().ptr
         val channel = g_io_channel_new_file(path, "r+", err)
-
         val strPtr = nativeHeap.alloc<CPointerVar<ByteVarOf<Byte>>>()
         val lenPtr = nativeHeap.alloc<ULongVar>()
         g_io_channel_read_to_end(channel, strPtr.ptr, lenPtr.ptr, err)
@@ -21,9 +20,7 @@ actual inline class File actual constructor(val path: String) {
         return text
     }
 
-    actual fun readBytes(): ByteArray {
-        return readText().encodeToByteArray()
-    }
+    actual fun readBytes() = readText().encodeToByteArray()
 
     actual fun forEachLine(block: (line: String) -> Unit) {
         val err = nativeHeap.alloc<CPointerVar<GError>>().ptr

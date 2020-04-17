@@ -29,5 +29,6 @@ inline fun Container.image(bitmap: Bitmap) = ImageView().also { add(it); it.bitm
 inline fun Container.linearLayout(orientation: Orientation = Orientation.VERTICAL, noinline init: LinearLayout.() -> Unit) = LinearLayout(orientation, init).also { add(it) }
 
 inline fun Container.tabs(noinline init: TabsView.() -> Unit) = TabsView(init).also { add(it) }
+inline fun Container.tabs() = TabsView{}.also { add(it) }
 
 inline fun Container.tree(noinline init: TreeView.() -> Unit) = TreeView(init).also { add(it) }

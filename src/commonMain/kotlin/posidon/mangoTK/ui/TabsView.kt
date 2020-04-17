@@ -5,15 +5,14 @@ package posidon.mangoTK.ui
  */
 expect class TabsView(init: TabsView.() -> Unit) : View {
 
-    fun add(page: Page)
+    fun add(tab: Tab)
 
     /**
-     * Each tab shows it's own page.
-     * A page is a Container, so it can contain views
+     * A tab is a Container, so it can contain views (only one)
      */
-    class Page(tabsView: TabsView, name: String): Container {
+    class Tab(tabsView: TabsView, name: String): Container {
         var name: String
     }
 }
 
-inline fun TabsView.page(name: String) = TabsView.Page(this, name).also { add(it) }
+inline fun TabsView.tab(name: String) = TabsView.Tab(this, name).also { add(it) }
